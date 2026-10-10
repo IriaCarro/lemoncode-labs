@@ -1,11 +1,11 @@
 import { type Roast } from './types';
 import { coffees } from './data';
 
-function formatPrice(price: number, currency = "€"): string {
+export function formatPrice(price: number, currency = "€"): string {
     return `${price.toFixed(2)} ${currency}`;
 }
 
-function stockStatus(stock: number): string {
+export function stockStatus(stock: number): string {
     if (stock === 0) {
         return "Agotado";
     } else if (stock < 5) {
@@ -15,7 +15,7 @@ function stockStatus(stock: number): string {
     }
 }
 
-function roastLabel(roast: Roast): string {
+export function roastLabel(roast: Roast): string {
     switch (roast) {
         case "light":
             return "Tueste claro";

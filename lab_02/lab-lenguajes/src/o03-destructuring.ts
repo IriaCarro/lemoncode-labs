@@ -1,0 +1,35 @@
+import type { Coffee } from "./types.ts";
+import { formatPrice } from "./o02-funciones.ts";
+import { coffees } from "./data.ts";
+
+export function coffeeCard({ name, origin, price}: Coffee): string {
+    return `${name} (${origin}) · ${formatPrice(price)}`;
+}
+
+export function mainNote(coffee: Coffee): string {
+    // Nos quedamos con la primera nota y 
+    // el resto de notas las agrupamos en un array
+    const [first, ...others] = coffee.notes;
+    return `${first} y ${others.length} más`;
+}
+
+export function toPublicCoffee({stock, ...publicCoffee }: Coffee): Omit<Coffee, "stock"> {
+    return publicCoffee;
+}
+
+export function sumAll(...amounts: number[]): number {
+    // Ideal para sumas de cantidades, 
+    // ya que reduce el array a un único valor
+    return amounts.reduce((acc, amount) => acc + amount, 0);
+}
+
+console.log(coffeeCard(coffees[0]));
+console.log(mainNote(coffees[0]));
+console.log(mainNote(coffees[1]));
+console.log(toPublicCoffee(coffees[1]));
+console.log(coffees[1].stock);
+console.log(sumAll(1, 2, 3));
+console.log(sumAll());
+// SPREAD operator: permite pasar un array como si 
+// fueran argumentos individuales a una función.
+console.log(sumAll(...coffees.map((coffee) => coffee.stock)));
