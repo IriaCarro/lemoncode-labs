@@ -1,8 +1,8 @@
-import { type Coffee } from "./types";
+// import { type Coffee } from "./types";
 
 // 1
-let shippingCost = 3.5;
-const totalWithShipping = (amount: number): number => amount + shippingCost;
+// let shippingCost = 3.5;
+// const totalWithShipping = (amount: number): number => amount + shippingCost;
 
 // Impura: el resultado de la función depende de la variable externa shippingCost
 
@@ -14,10 +14,12 @@ const totalWithShipping = (amount: number, shippingCost: number): number => {
 */
 
 // 2
+/*
 const applyDiscount = (coffee: Coffee, rate: number): Coffee => {
   coffee.price = coffee.price * (1 - rate);
   return coffee;
 };
+/*
 
 // Impura: Modifica el objeto de entrada
 
@@ -31,14 +33,17 @@ const applyDiscount = (coffee: Coffee, rate: number): Coffee => ({
  */
 
 // 3
+/*
 const namesInCapitals = (list: Coffee[]): string[] =>
   list.map((coffee) => coffee.name.toUpperCase());
-
+*/
 // Pura: Map crea un nuevo array
 
 // 4
+/*
 const sortByPrice = (list: Coffee[]): Coffee[] =>
   list.sort((a, b) => a.price - b.price);
+*/
 
 // Impura: sort modificar el array de entrada
 
@@ -52,7 +57,7 @@ const sortByPrice = (list: Coffee[]): Coffee[] => {
 */
 
 // 5
-const createOrderId = (): string => `ORD-${Date.now()}`;
+//const createOrderId = (): string => `ORD-${Date.now()}`;
 
 // Impura: Depende de un elemento externo "fecha actual en ese momento"
 
@@ -65,6 +70,7 @@ const createOrderId = (now: Date): string => {
 */
 
 // 6
+/*
 const buildTags = (coffee: Coffee): string[] => {
   const tags: string[] = [];
   for (const note of coffee.notes) {
@@ -72,5 +78,6 @@ const buildTags = (coffee: Coffee): string[] => {
   }
   return tags;
 };
+*/
 // Pura: Devuelve un array nuevo sin modificar el objeto de entrada
 // push no es usado por el objeto de entrada

@@ -1,7 +1,13 @@
 type PriceRule = (price: number) => number;
 
 const createDiscount = (rate: number): PriceRule => (price) => price * (1 - rate);
-const createOrderIdGenerator = (prefix: string) => (id :Number): string => `${prefix}-${id}`;
+const createOrderIdGenerator = (prefix: string): (() => string) => {
+    let count = 0;
+    return () => {
+        count++;
+        return `${prefix}-${count}`;
+    }
+}
 
 const blackFriday = createDiscount(0.2);
 const members = createDiscount(0.1);
@@ -15,7 +21,7 @@ console.log([10, 20, 15].map(blackFriday));
 const nextOrderId = createOrderIdGenerator("TUE");
 const nextGiftId = createOrderIdGenerator("REGALO");
 
-console.log(nextOrderId(1));
-console.log(nextOrderId(2));
-console.log(nextGiftId(1));
-console.log(nextOrderId(3));
+console.log(nextOrderId());
+console.log(nextOrderId());
+console.log(nextGiftId());
+console.log(nextOrderId());
