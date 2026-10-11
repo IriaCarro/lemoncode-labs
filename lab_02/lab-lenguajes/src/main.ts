@@ -2,3 +2,8 @@ import "./o01-tipos.ts";
 import "./o02-funciones.ts";
 import "./o03-destructuring.ts";
 import "./o04-opcionales.ts";
+import "./o05-arrays.ts";
+import "./o06-carrito.ts"
+import "./o07-pureza.ts";
+// import "./o08-uniones-genericos.ts"
+// import "./o09-utilidad.ts"
