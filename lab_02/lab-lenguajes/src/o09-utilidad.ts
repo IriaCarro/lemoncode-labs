@@ -59,3 +59,12 @@ const cheaper = updateCoffee(coffees[1], { price: 11.9, stock: 10 });
 console.log(cheaper.price, cheaper.stock);
 console.log(coffees[1].price, coffees[1].stock);
 console.log(countByRoast(coffees));
+
+export {
+    type CoffeePreview,
+    type NewCoffee,
+    toPreview,
+    createCoffee,
+    updateCoffee,
+    countByRoast
+}

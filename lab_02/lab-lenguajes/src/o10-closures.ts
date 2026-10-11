@@ -25,3 +25,13 @@ console.log(nextOrderId());
 console.log(nextOrderId());
 console.log(nextGiftId());
 console.log(nextOrderId());
+
+export {
+    type PriceRule,
+    createDiscount, 
+    createOrderIdGenerator, 
+    blackFriday, 
+    members, 
+    nextGiftId,
+    nextOrderId
+}

@@ -48,3 +48,11 @@ console.log(produce(subscription, () => {}) === subscription);
 console.log(Object.isFrozen(upgraded.plan));
 
 // Immer es mucho más legible pero nos crea dependencia con esa librería
+
+export {
+    type Subscription,
+    subscription,
+    movedImmer,
+    movedSpread,
+    upgraded
+}

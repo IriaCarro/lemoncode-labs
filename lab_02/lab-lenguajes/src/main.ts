@@ -9,3 +9,6 @@ import "./o08-uniones-genericos.ts";
 import "./o09-utilidad.ts";
 import "./o10-closures.ts";
 import "./o11-immer.ts";
+import "./p02-deshacer-carrito.ts";
+import "./p03-group-reduce.ts";
+import "./p05-unknown.ts";

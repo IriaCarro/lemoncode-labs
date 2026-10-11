@@ -42,3 +42,11 @@ console.log(findById(coffees, 99)?.name ?? "No encontrado");
 // El findById devuelve un objeto opcional del tipo que le pasemosla lista
 // En este caso para coffees devuelve un objeto Coffee
 // y para customers devuelve un objeto Customer
+
+export {
+    type OrderStatus,
+    statusLabel, 
+    statusMessage,
+    normalizeId,
+    findById
+}

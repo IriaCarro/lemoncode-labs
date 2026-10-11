@@ -2,12 +2,12 @@ import { type Coffee } from "./types";
 import { coffees } from "./data";
 import { formatPrice } from "./o02-funciones";
 
-interface CartItem {
+export interface CartItem {
   coffeeId: number;
   quantity: number;
 }
 
-type Cart = CartItem[];
+export type Cart = CartItem[];
 
 export function findCartItem(cart: Cart, coffeeId: number): CartItem | undefined {
     return cart.find(item => item.coffeeId === coffeeId);

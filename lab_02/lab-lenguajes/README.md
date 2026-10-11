@@ -125,40 +125,40 @@ Immer es mucho más legible, sobre todo con objetos anidados (cambiar `customer.
 
 #### Prompt
 
-Explicame como funciona el operador spread
+Crea test para todos los métodos en los scripts o-XX
 
 #### Qué me dio
 
-...
+Un fichero de tests por cada script con test funcionales
 
 #### Qué corregí y por qué
 
-...
+Quise añadir test de mutabilidad y de tipos relacionados con los que estamos viendo en clase, también había algunos tests que no pasaban y adapte el método (para arreglarlo) o los tests para que se comporten como se espera
 
 ### Ejemplo 2
 
 #### Prompt
 
-"..."
+Me puedes añadir un export en todos los ficheros con todos los tipos? Me gustaría que se ubique en el final del fichero.
 
 #### Qué me dio
 
-...
+Añadió los exports en los ficheros en los que se me había escapado
 
 #### Qué corregí y por qué
 
-...
+En alguna situación lo duplico porque no había llegado a guardar el fichero
 
 ### Ejemplo 3
 
 #### Prompt
 
-"..."
+Quiero usar reduce para crear un Record<Roast, Coffee[]> en el método groupByRoast
 
 #### Qué me dio
 
-...
+Me creó el método
 
 #### Qué corregí y por qué
 
-...
+Eliminé comentarios redundantes y pedi que creara los test pertinentes tras probarlo con console.log
