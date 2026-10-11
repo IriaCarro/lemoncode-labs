@@ -6,4 +6,4 @@ import "./o05-arrays.ts";
 import "./o06-carrito.ts"
 import "./o07-pureza.ts";
 import "./o08-uniones-genericos.ts"
-// import "./o09-utilidad.ts"
+import "./o09-utilidad.ts"

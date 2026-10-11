@@ -14,7 +14,7 @@ export function findCartItem(cart: Cart, coffeeId: number): CartItem | undefined
 }
 
 export function addToCart(cart: Cart, coffeeId: number): Cart {
-    var existingItem = findCartItem(cart, coffeeId);
+    let existingItem = findCartItem(cart, coffeeId);
     if (!existingItem) {
         return [...cart, { coffeeId, quantity: 1 }];
     }
