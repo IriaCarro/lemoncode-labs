@@ -70,4 +70,10 @@ Perdemos:
 
 # Ejercicio 4
 
-##
+## ¿Por qué Vite, por sí solo, no comprueba los tipos? ¿Qué gana con ello? (Introducción del módulo: oxc e isolatedModules).
+
+Vite transpila TypeScript para que el navegador pueda ejecutar JavaScript, pero no hace una comprobación de tipos.
+
+isolatedModules ayuda a detectar construcciones de TypeScript, es una opción del propio Typescript
+
+Comprobar tipos: npx tsc --noEmit

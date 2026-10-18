@@ -8,3 +8,5 @@ const img = document.createElement("img");
 img.src = coffeePhoto;
 img.alt = "";
 document.body.appendChild(img);
+
+const total: number = 3;
