@@ -92,3 +92,21 @@ Resuelve: compatibilidad y demasiados modulos y peticiones
 Vite puede transformar .jsx y .tsx sin el plugin; eso basta para que el JSX se convierta en JavaScript.
 
 Pero con el plugin añadimos funciones específicas de React, sobre todo React Fast Refresh, que permite actualizar componentes durante el desarrollo y normalmente conservar su estado
+
+# Ejercicio 6
+
+## ¿Por qué Vite obliga a usar el prefijo VITE\*?
+
+No obliga a usarlo, pero es la forma predeterminada para exponer variables en import.meta.env.
+
+## Si mañana cambia la URL de la API de producción, ¿basta con editar .env.production en el servidor?
+
+También hay que hacer un build con el nuevo valor
+
+## ¿Por qué nunca debe ir una clave secreta en una variable VITE\*?
+
+Porque su valor puede verse en el javascript compilado.
+
+## Según la comprobación 5: ¿un feature flag desactivado sirve para "esconder" algo a los usuarios?
+
+Si
