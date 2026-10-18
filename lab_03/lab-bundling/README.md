@@ -77,3 +77,18 @@ Vite transpila TypeScript para que el navegador pueda ejecutar JavaScript, pero 
 isolatedModules ayuda a detectar construcciones de TypeScript, es una opción del propio Typescript
 
 Comprobar tipos: npx tsc --noEmit
+
+# Ejercicio 5
+
+## ¿Por qué Vite trata distinto a react (dependencia) y a app.tsx (vuestro código)? ¿Qué es el pre-bundling y qué problema resuelve?
+
+Porque la aplicación y sus dependencias no siguen el mismo ritmo de actualización
+
+El prebundling se usa cuando arrancamo vite de desarrollo "npm run start", aquí se hace una optimización para poder ejecutar el código en el navegador.
+Resuelve: compatibilidad y demasiados modulos y peticiones
+
+## ¿Qué aporta exactamente @vitejs/plugin-react si el JSX ya funcionaba sin él?
+
+Vite puede transformar .jsx y .tsx sin el plugin; eso basta para que el JSX se convierta en JavaScript.
+
+Pero con el plugin añadimos funciones específicas de React, sobre todo React Fast Refresh, que permite actualizar componentes durante el desarrollo y normalmente conservar su estado

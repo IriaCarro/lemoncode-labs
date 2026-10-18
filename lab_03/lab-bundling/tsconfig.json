@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": true,
     "esModuleInterop": true,
     "isolatedModules": true,
     "lib": ["ESNext", "DOM"],
@@ -12,5 +14,5 @@
     "target": "ESNext",
     "useDefineForClassFields": true
   },
-  "include": ["src"]
+  "include": ["src"],
 }
