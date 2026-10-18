@@ -137,9 +137,9 @@ No. En el frontend un flag puede ocultar una parte de la interfaz, pero no prote
 
 El enunciado pide adjuntar estas evidencias. No se han añadido todavía; guardadlas en `docs/` con estos nombres:
 
-- Pendiente: `docs/ejercicio-1-304.png` — respuesta `304` del ejercicio 1.
+- Pendiente: `docs/ejercicio-1-304.png` respuesta `304` del ejercicio 1.
 - Pendiente: `docs/ejercicio-5-cache-control.png` — cabecera `Cache-Control` de las dependencias del ejercicio 5.
-- Pendiente: `docs/ejercicio-6-preview-produccion.png` — página en `preview` con los valores de producción del ejercicio 6.
+- Pendiente: `docs/ejercicio-6-preview-produccion.png` página en `preview` con los valores de producción del ejercicio 6.
 
 ## Salida de `npm run build`
 
