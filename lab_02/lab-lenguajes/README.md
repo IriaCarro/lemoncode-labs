@@ -101,11 +101,11 @@ Immer es mucho más legible, sobre todo con objetos anidados (cambiar `customer.
 
 ### Opcionales
 
-- [ ] P1 · Tests con Vitest
-- [ ] P2 · Deshacer en el carrito
-- [ ] P3 · Agrupar con reduce
+- [x] P1 · Tests con Vitest
+- [x] P2 · Deshacer en el carrito
+- [x] P3 · Agrupar con reduce
 - [ ] P4 · Ordenar por cualquier propiedad
-- [ ] P5 · Datos desconocidos con `unknown`
+- [x] P5 · Datos desconocidos con `unknown`
 - [ ] P6 · Vuestros propios `map` y `filter`
 - [ ] P7 · Modelad los datos de vuestro TFM
 
@@ -162,3 +162,19 @@ Me creó el método
 #### Qué corregí y por qué
 
 Eliminé comentarios redundantes y pedi que creara los test pertinentes tras probarlo con console.log
+
+### Ejemplo 4
+
+#### Prompt
+
+Revisa el método removeFromCart para que quite el café entero del carrito en vez de restar la cantidad
+
+#### Qué me dio
+
+Me actualizó el método con la nueva lógica para eliminar el café del carrito independientemente de la cantidad
+
+#### Qué corregí y por qué
+
+Le he pedido que haga los ajustes para que funcione correctamente, si hay cantidad > 1 en el café se resta uno sino lo eliminamos entero
+
+Captura de npx tsc: /docs/Captura-npx-tsc.png

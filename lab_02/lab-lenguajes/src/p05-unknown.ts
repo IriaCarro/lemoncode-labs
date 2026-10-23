@@ -30,11 +30,11 @@ function isCoffee(data: unknown): boolean {
 const response = '{"id": 8, "name": "Perú Cajamarca", "price": 13.5}';
 const data: unknown = JSON.parse(response);
 console.log(`Es café: ${isCoffee(data)}`);
-// → "Es café: false"
+// Es café: false
 
 const fullResponse = JSON.stringify(coffees[0]);
 console.log(`Es café: ${isCoffee(JSON.parse(fullResponse))}`);
-// → "Es café: true"
+// Es café: true
 
 export {
     isCoffee

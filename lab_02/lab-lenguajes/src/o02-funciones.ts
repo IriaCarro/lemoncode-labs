@@ -42,9 +42,13 @@ function roastLabel(roast: Roast): string {
 
 for (const coffee of coffees) {
     console.log(`Café: ${coffee.name}`);
+    // Café: Etiopía Yirgacheffe / Colombia Huila / Kenia AA / Brasil Cerrado / Guatemala Antigua / Sumatra Mandheling
     console.log(`Tueste: ${roastLabel(coffee.roast)}`);
+    // Tueste: Tueste claro / Tueste medio / Tueste claro / Tueste oscuro / Tueste medio / Tueste oscuro
     console.log(`Stock: ${stockStatus(coffee.stock)}`);
+    // Stock: Disponible / Últimas unidades / Agotado / Disponible / Disponible / Agotado
     console.log("--------------------");
+    // --------------------
 }
 
 export {

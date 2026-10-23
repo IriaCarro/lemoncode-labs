@@ -23,12 +23,17 @@ for (const customer of customers) {
   console.log(
     `${customer.name} · ${getCity(customer)} · ${getGrind(customer)} · newsletter: ${wantsNewsletter(customer)}`,
   );
+  // Lucía · Málaga · molido · newsletter: false / Marcos · Sin dirección · grano · newsletter: true / Ana · Madrid · grano · newsletter: true
 }
 
 console.log(formatPrice(finalPrice(coffees[0])));
+// 13.41 €
 console.log(formatPrice(finalPrice(coffees[1])));
+// 12.90 €
 console.log(formatPrice(finalPrice(coffees[2])));
+// 15.50 €
 console.log(formatPrice(finalPrice(coffees[4])));
+// 11.22 €
 
 
 /* function wantsNewsletter(customer: Customer): boolean {

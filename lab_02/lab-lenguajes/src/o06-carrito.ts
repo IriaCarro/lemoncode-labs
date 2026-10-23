@@ -1,6 +1,7 @@
 import { type Coffee } from "./types";
 import { coffees } from "./data";
 import { formatPrice } from "./o02-funciones";
+import { finalPrice } from "./o04-opcionales";
 
 export interface CartItem {
   coffeeId: number;
@@ -31,7 +32,10 @@ export function removeFromCart(cart: Cart, coffeeId: number): Cart {
     if (!existingItem) {
         return cart;
     }
-    return changeQuantity(cart, coffeeId, existingItem.quantity - 1);
+    if (existingItem.quantity > 1) {
+        return changeQuantity(cart, coffeeId, existingItem.quantity - 1);
+    }
+    return cart.filter(item => item.coffeeId !== coffeeId);
 }
 
 export function changeQuantity(cart: Cart, coffeeId: number, quantity: number): Cart {
@@ -48,7 +52,7 @@ export function cartTotal(cart: Cart, coffees: Coffee[]): number {
     return cart.reduce((total, item) => {
         const coffee = coffees.find(c => c.id === item.coffeeId);
         if (coffee) {
-            total += coffee.price * item.quantity;
+            total += finalPrice(coffee) * item.quantity;
         }
         return total;
     }, 0);
@@ -63,14 +67,25 @@ const cart5 = removeFromCart(cart4, 1);
 const cart6 = changeQuantity(cart5, 4, 0);
 
 console.log(cart3);
+// [{ coffeeId: 1, quantity: 2 }, { coffeeId: 4, quantity: 1 }]
 console.log(cart4);
+// [{ coffeeId: 1, quantity: 2 }, { coffeeId: 4, quantity: 3 }]
 console.log(cart5);
+// [{ coffeeId: 1, quantity: 1 }, { coffeeId: 4, quantity: 3 }]
 console.log(cart6);
+// []
 console.log(empty);
+// []
 console.log(cart1);
+// [{ coffeeId: 1, quantity: 1 }]
 
 console.log(cart3 === cart2);
+// false
 console.log(cart3[0] === cart2[0]);
+// false
 console.log(cart3[1] === cart2[1]);
+// true
 console.log(formatPrice(cartTotal(cart4, coffees)));
+// "58.32 €"
 console.log(formatPrice(cartTotal([{ coffeeId: 99, quantity: 1 }], coffees)));
+// "0.00 €"

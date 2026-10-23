@@ -51,12 +51,12 @@ describe("addToCart", () => {
 });
 
 describe("removeFromCart", () => {
-    it("resta 1 a la cantidad", () => {
+    it("resta una unidad si la cantidad es mayor que 1", () => {
         const cart: Cart = [{ coffeeId: 1, quantity: 2 }];
         expect(removeFromCart(cart, 1)).toEqual([{ coffeeId: 1, quantity: 1 }]);
     });
 
-    it("quita el café si la cantidad llega a 0", () => {
+    it("elimina el café si su cantidad es 1", () => {
         const cart: Cart = [
             { coffeeId: 1, quantity: 1 },
             { coffeeId: 4, quantity: 3 },
@@ -105,13 +105,13 @@ describe("changeQuantity", () => {
 });
 
 describe("cartTotal", () => {
-    it("suma precio por cantidad de cada café", () => {
+    it("suma el precio con descuento por cantidad de cada café", () => {
         const cart: Cart = [
             { coffeeId: 1, quantity: 2 },
             { coffeeId: 4, quantity: 3 },
         ];
-        // 14.9 * 2 + 10.5 * 3 = 61.3
-        expect(cartTotal(cart, coffees)).toBeCloseTo(61.3);
+        // 14.9 * (1 - 0.1) * 2 + 10.5 * 3 = 58.32
+        expect(cartTotal(cart, coffees)).toBeCloseTo(58.32);
     });
 
     it("devuelve 0 con el carrito vacío", () => {

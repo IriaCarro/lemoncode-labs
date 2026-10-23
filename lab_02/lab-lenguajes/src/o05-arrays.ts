@@ -39,13 +39,21 @@ function hasNotes(coffee: Coffee): boolean {
 console.log(availableCoffees(coffees).map((coffee) => {
     return coffee.name;
 }));
+// ["Etiopía Yirgacheffe", "Colombia Huila", "Brasil Cerrado", "Guatemala Antigua"]
 console.log(catalogLabels(coffees));
+// ["Brasil Cerrado (Brasil) · 10.50 €", "Colombia Huila (Colombia) · 12.90 €", "Guatemala Antigua (Guatemala) · 13.20 €", "Etiopía Yirgacheffe (Etiopía) · 14.90 €"]
 console.log(formatPrice(stockValue(coffees)));
+// 585.60 €
 console.log(coffees.some(isAvailable));
+// true
 console.log(coffees.every(hasNotes));
-console.log(coffeeById(4)?.name || "No existe");
-console.log(coffeeById(99)?.name || "No existe");
+// true
+console.log(coffeeById(4)?.name ?? "No existe");
+// Brasil Cerrado
+console.log(coffeeById(99)?.name ?? "No existe");
+// No existe
 console.log(coffees.map((coffee) => coffee.name));
+// ["Etiopía Yirgacheffe", "Colombia Huila", "Kenia AA", "Brasil Cerrado", "Guatemala Antigua", "Sumatra Mandheling"]
 
 export {
     availableCoffees,

@@ -34,6 +34,7 @@ history.add(1);
 history.add(4);
 history.undo();
 console.log(history.current());
+// [{ coffeeId: 1, quantity: 1 }]
 
 export {
     type CartHistory,

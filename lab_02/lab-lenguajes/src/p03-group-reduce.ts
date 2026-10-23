@@ -15,11 +15,11 @@ function groupByRoast(list: Coffee[]): Record<Roast, Coffee[]> {
 
 const grouped = groupByRoast(coffees);
 console.log(grouped.light.map((coffee) => coffee.name));
-// → ["Etiopía Yirgacheffe", "Kenia AA"]
+// ["Etiopía Yirgacheffe", "Kenia AA"]
 console.log(grouped.medium.map((coffee) => coffee.name));
-// → ["Colombia Huila", "Guatemala Antigua"]
+// ["Colombia Huila", "Guatemala Antigua"]
 console.log(grouped.dark.map((coffee) => coffee.name));
-// → ["Brasil Cerrado", "Sumatra Mandheling"]
+// ["Brasil Cerrado", "Sumatra Mandheling"]
 
 export {
     groupByRoast

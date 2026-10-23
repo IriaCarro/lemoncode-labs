@@ -24,15 +24,23 @@ function sumAll(...amounts: number[]): number {
 }
 
 console.log(coffeeCard(coffees[0]));
+// Etiopía Yirgacheffe (Etiopía) · 14.90 €
 console.log(mainNote(coffees[0]));
+// floral y 2 más
 console.log(mainNote(coffees[1]));
+// caramelo y 1 más
 console.log(toPublicCoffee(coffees[1]));
+// { id: 2, name: "Colombia Huila", origin: "Colombia", notes: ["caramelo", "manzana roja"], roast: "medium", price: 12.9 }
 console.log(coffees[1].stock);
+// 3
 console.log(sumAll(1, 2, 3));
+// 6
 console.log(sumAll());
+// 0
 // SPREAD operator: permite pasar un array como si 
 // fueran argumentos individuales a una función.
 console.log(sumAll(...coffees.map((coffee) => coffee.stock)));
+// 48
 
 export {
     coffeeCard,

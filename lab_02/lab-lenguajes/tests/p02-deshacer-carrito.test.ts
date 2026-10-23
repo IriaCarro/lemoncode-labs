@@ -20,7 +20,6 @@ describe("createCartHistory", () => {
         history.add(4);
         history.remove(1);
         expect(history.current()).toEqual([
-            { coffeeId: 1, quantity: 1 },
             { coffeeId: 4, quantity: 1 },
         ]);
     });

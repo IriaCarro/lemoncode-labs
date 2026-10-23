@@ -29,11 +29,17 @@ const findById = <T extends { id: number }>(
 };
 
 console.log(statusMessage("roasting"));
+// Tu pedido está: Tostando
 console.log(normalizeId("4"));
+// 4
 console.log(normalizeId(4));
+// 4
 console.log(findById(coffees, normalizeId("4"))?.name ?? "No encontrado");
+// Brasil Cerrado
 console.log(findById(customers, 3)?.email ?? "No encontrado");
+// No encontrado
 console.log(findById(coffees, 99)?.name ?? "No encontrado");
+// No encontrado
 
 
 // Al comentar la opción delivered en statusLabel el error es:

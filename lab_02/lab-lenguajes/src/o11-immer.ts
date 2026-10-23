@@ -34,18 +34,29 @@ const upgraded = produce(subscription, (draft) => {
 });
 
 console.log(movedSpread.customer.address.city);
+// Sevilla
 console.log(movedImmer.customer.address.city);
+// Sevilla
 console.log(subscription.customer.address.city);
+// Málaga
 
 console.log(movedImmer.customer === subscription.customer);
+// false
 console.log(movedImmer.plan === subscription.plan);
+// true
 console.log(upgraded.plan);
+// { name: "Pro", bagsPerMonth: 3 }
 console.log(upgraded.deliveries);
+// ["2026-09-05", "2026-10-05", "2026-11-05"]
 console.log(subscription.plan);
+// { name: "Popular", bagsPerMonth: 2 }
 console.log(subscription.deliveries);
+// ["2026-09-05", "2026-10-05"]
 
 console.log(produce(subscription, () => {}) === subscription);
+// true
 console.log(Object.isFrozen(upgraded.plan));
+// true
 
 // Immer es mucho más legible pero nos crea dependencia con esa librería
 
