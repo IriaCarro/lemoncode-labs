@@ -21,11 +21,11 @@ Necesitas tener [Node.js](https://nodejs.org/) y npm instalados.
 
 ### Scripts disponibles
 
-| Comando           | Para qué sirve                                                                  |
-| ----------------- | ------------------------------------------------------------------------------- |
-| `npm start`       | Comprueba los tipos con TypeScript y arranca el servidor de desarrollo de Vite. |
-| `npm run build`   | Comprueba los tipos y genera la versión de producción en `dist/`.               |
-| `npm run preview` | Sirve localmente la última compilación de `dist/` para probarla.                |
+| Comando           | Para qué sirve |
+| ----------------- | -------------- |
+| `npm start`       | Arranca el servidor de desarrollo de Vite. `vite-plugin-checker` comprueba TypeScript y muestra los errores en la terminal y en el navegador. |
+| `npm run build`   | Genera la versión de producción en `dist/`. |
+| `npm run preview` | Sirve localmente la última compilación de `dist/` para probarla. |
 
 Para probar la versión de producción, ejecuta primero el build y después el preview:
 
@@ -79,9 +79,9 @@ Pero perdemos:
 
 ## ¿Por qué Vite, por sí solo, no comprueba los tipos? ¿Qué gana con ello? (Introducción del módulo: oxc e isolatedModules).
 
-Vite transpila TypeScript a JavaScript para servirlo rápidamente, pero esa transformación no comprueba que los tipos sean compatibles. Comprobar tipos requiere analizar las relaciones entre módulos y es una tarea distinta, que puede ejecutarse con `npx tsc --noEmit`.
+Vite transpila TypeScript a JavaScript para servirlo rápidamente, pero esa transformación no comprueba que los tipos sean compatibles. Comprobar tipos requiere analizar las relaciones entre módulos y es una tarea distinta; en este proyecto la realiza `vite-plugin-checker` durante el desarrollo.
 
-`isolatedModules` es una opción de TypeScript que avisa de construcciones que no se pueden transformar tratando cada fichero de forma aislada; no activa la comprobación de tipos.
+`isolatedModules` es una opción de TypeScript que avisa de construcciones que no se pueden transformar tratando cada fichero de forma aislada; no activa la comprobación de tipos. En este proyecto, `vite-plugin-checker` realiza esa comprobación durante el desarrollo y presenta los errores en la terminal y en el navegador.
 
 # Ejercicio 5
 
@@ -121,46 +121,36 @@ No. En el frontend un flag puede ocultar una parte de la interfaz, pero no prote
 
 ### Obligatorios
 
-- [x] 1. Proyecto Vite con scripts `start`, `build` y `preview`; `npm run build` termina correctamente.
+- [x] 1. Proyecto Vite con scripts `start`, `build` y `preview`.
 - [x] 2. Estilos Sass compilados a CSS en producción.
 - [x] 3. Recursos de imagen procesados por Vite; la compilación genera la foto con hash en `dist/assets/`.
-- [ ] 4. Comprobación de tipos con `vite-plugin-checker` durante desarrollo y build. El build comprueba tipos con `tsc --noEmit`, pero falta configurar el plugin y verificar su capa en el navegador.
-- [ ] 5. React y su actualización Fast Refresh. La aplicación usa React, pero `@vitejs/plugin-react` está instalado y todavía no está registrado en una configuración de Vite.
+- [x] 4. `vite-plugin-checker` está configurado para comprobar TypeScript durante el desarrollo y mostrar errores en la terminal y en el navegador. Comprueba este comportamiento con el procedimiento siguiente.
+- [x] 5. `@vitejs/plugin-react` está configurado para habilitar React Fast Refresh.
 - [x] 6. Variables de entorno de desarrollo y producción tipadas y leídas desde `env.constants.ts`; el banner se controla con `VITE_SHOW_OFFERS`.
+
+Para comprobar los ejercicios 4 y 5 manualmente:
+
+1. Ejecuta `npm start`. Introduce temporalmente un error de tipo en un archivo TypeScript y confirma que aparece tanto en la terminal como en el overlay del navegador. Después, deshaz ese cambio.
+2. En la aplicación, añade tres bolsas al carrito y modifica el texto del `<h2>`. Comprueba que Fast Refresh conserva el contenido del carrito.
 
 ### Opcionales
 
 - [ ] Opcional 1. Tailwind CSS.
 - [ ] Opcional 2. Code splitting, carga bajo demanda y análisis del bundle.
 
-## Capturas pendientes
+## Capturas
 
-El enunciado pide adjuntar estas evidencias. No se han añadido todavía; guardadlas en `docs/` con estos nombres:
+Evidencias de los ejercicios:
 
-- Pendiente: `docs/ejercicio-1-304.png` respuesta `304` del ejercicio 1.
-- Pendiente: `docs/ejercicio-5-cache-control.png` — cabecera `Cache-Control` de las dependencias del ejercicio 5.
-- Pendiente: `docs/ejercicio-6-preview-produccion.png` página en `preview` con los valores de producción del ejercicio 6.
+- Ejercicio 1: respuesta `304` — [docs/ejercicio1-304.png](docs/ejercicio1-304.png)
+- Ejercicio 5: cabecera `Cache-Control` de las dependencias — [docs/ejercicio-5-cache-control.png](docs/ejercicio-5-cache-control.png)
+- Ejercicio 6: página en `preview` con los valores de producción — [docs/ejercicio-6-preview-produccion.png](docs/ejercicio-6-preview-produccion.png)
 
-## Salida de `npm run build`
+## Comprobar la compilación de producción
 
-Salida comprobada en este proyecto:
+Ejecuta `npm run build` para generar los archivos en `dist/`. Después, usa `npm run preview` para servir esa compilación. Los nombres con hash, tamaños y tiempos de salida pueden variar entre compilaciones.
 
-```text
-> lab-bundling@1.0.0 build
-> npx tsc --noEmit && vite build
-
-vite v8.3.4 building client environment for production...
-✓ 19 modules transformed.
-computing gzip size...
-dist/index.html                        5.57 kB │ gzip:  4.22 kB
-dist/assets/initial-2-BJOvV7C0.webp   46.52 kB
-dist/assets/index-DNlKy9pS.css         0.04 kB │ gzip:  0.05 kB
-dist/assets/index-BqRp4iy3.js        220.31 kB │ gzip: 69.00 kB
-
-✓ built in 152ms
-```
-
-Los hashes y tiempos pueden variar en siguientes compilaciones.
+La comprobación de tipos con `vite-plugin-checker` se realiza durante el desarrollo; `npm run build` ejecuta la compilación de Vite.
 
 ## Bitácora de IA
 

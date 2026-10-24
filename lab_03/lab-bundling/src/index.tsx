@@ -13,6 +13,4 @@ img.src = coffeePhoto;
 img.alt = "";
 document.body.appendChild(img); */
 
-const total: number = 3;
-
 createRoot(document.getElementById("root")!).render(<App/>);

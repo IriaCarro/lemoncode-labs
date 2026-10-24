@@ -4,3 +4,9 @@ h1 {
   background-color: $tueste-900;
   color: $white;
 }
+
+.brand-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
