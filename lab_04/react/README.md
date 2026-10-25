@@ -28,12 +28,30 @@ Vite.
 
 - [x] O1 · El catálogo con componentes
 - [x] O2 · Un carrito con estado y eventos
-- [ ] O3 · Cargar los cafés con `useEffect`
+- [x] O3 · Cargar los cafés con `useEffect`
 - [ ] O4 · Un custom hook y una ref
 - [ ] O5 · Lista y detalle con TanStack Router
 - [ ] O6 · Alta de cafés con TanStack Form y Zod
 - [ ] O7 · Edición y organización en pods
 - [ ] O8 · README + bitácora de IA
+
+## Ejercicios opcionales
+
+- [ ] P1 · Un carrito que no se pierde
+- [ ] P2 · Y que sobreviva también a recargar
+- [ ] P3 · Una cuenta atrás para la oferta
+- [ ] P4 · Filtros que viven en la URL
+- [ ] P5 · Memorizar… con cabeza
+- [ ] P6 · CSS Modules
+- [ ] P7 · Eliminar un café
+
+## Desafíos
+
+- [ ] D1 · Una búsqueda con debounce
+- [ ] D2 · React Compiler
+- [ ] D3 · Un contrato de API distinto
+- [ ] D4 · Tests de componentes
+- [ ] D5 · Hacia TanStack Start
 
 ### Pregunta de O1
 
@@ -50,6 +68,13 @@ React avisa de que cada elemento de una lista necesita una `key` única. La usa 
 `onAdd={addToCart}` pasa la función para que la tarjeta la llame cuando se pulsa el botón.
 `onAdd={addToCart()}` la ejecutaría durante el render, sin esperar al clic. El total se calcula con `reduce` a partir de `cart`, así
 que no hace falta duplicarlo en estado: mantener ambos podría dejarlos desincronizados.
+
+### Preguntas de O3
+
+¿Por qué va la petición dentro de un `useEffect` y qué significa su array de dependencias `[]`?
+
+**Respuesta:**
+La petición es un efecto secundario: ponerla dentro de `useEffect` evita iniciarla durante el render, que React puede repetir. El array vacío indica que el efecto no depende de valores reactivos y se ejecuta al montar el componente; al desmontarlo se limpia la petición pendiente. En desarrollo, `StrictMode` puede ejecutar el ciclo del efecto más de una vez para detectar problemas.
 
 ## Reglas del proyecto
 
