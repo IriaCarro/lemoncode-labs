@@ -1,8 +1,6 @@
 # Catálogo de café · React
 
-Aplicación del laboratorio 4 para practicar React y TypeScript. El proyecto
-evoluciona desde un catálogo de cafés hasta una aplicación con búsqueda,
-carrito, rutas y formularios para crear y editar cafés.
+Aplicación del laboratorio 4 para practicar React y TypeScript. El proyecto evoluciona desde un catálogo de cafés hasta una aplicación con búsqueda, carrito, rutas y formularios para crear y editar cafés.
 
 ## Requisitos
 
@@ -30,7 +28,7 @@ Vite.
 - [x] O2 · Un carrito con estado y eventos
 - [x] O3 · Cargar los cafés con `useEffect`
 - [x] O4 · Un custom hook y una ref
-- [ ] O5 · Lista y detalle con TanStack Router
+- [x] O5 · Lista y detalle con TanStack Router
 - [ ] O6 · Alta de cafés con TanStack Form y Zod
 - [ ] O7 · Edición y organización en pods
 - [ ] O8 · README + bitácora de IA
@@ -52,16 +50,6 @@ Vite.
 - [ ] D3 · Un contrato de API distinto
 - [ ] D4 · Tests de componentes
 - [ ] D5 · Hacia TanStack Start
-
-## Arquitectura
-
-- `core/coffees` contiene el modelo y la carga de cafés reutilizable.
-- `useCoffees()` vive en `core/coffees/hooks.ts`: cada llamada tiene sus propios
-  estados y realiza su propia petición.
-- `pods/catalogo` contiene el container, que gestiona la carga, el buscador y
-  el carrito, y el component, que presenta el catálogo y recibe sus datos y
-  acciones por props.
-- `app.tsx` compone la pantalla del catálogo.
 
 ### Pregunta de O1
 
@@ -92,6 +80,14 @@ Si dos componentes distintos llaman a `useCoffees()`, ¿comparten datos? ¿Cuán
 
 **Respuesta:**
 Cada llamada a `useCoffees()` tiene su propio estado, así que los componentes no comparten los datos y cada uno inicia su propia petición al montarse. La ref permite enfocar directamente el input del DOM cuando se pulsa «Buscar» sin provocar un render; el foco es una acción imperativa, no un dato que deba controlar la interfaz.
+
+### Preguntas de O5
+
+¿Qué ventaja tienen las rutas frente a cambiar de pantalla con un booleano? ¿Por qué se pierde el carrito al navegar al detalle y volver?
+
+**Respuesta:**
+Una URL por pantalla se puede compartir, guardar en favoritos y abrir directamente; además, el historial del navegador permite volver y avanzar entre pantallas.
+El carrito está en el estado local del catálogo, que se desmonta al abrir el detalle, así que ese estado desaparece; para conservarlo al navegar tendría que vivir en un ancestro que permanezca montado, como el layout o en el almacenamiento del navegador.
 
 ## Reglas del proyecto
 
