@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useCoffees } from "../../core/coffees/hooks";
+import { ErrorMessage } from "../../common/components/error-message";
+import { LoadingMessage } from "../../common/components/loading-message";
 import type { Coffee } from "../../core/coffees/model";
 import { CatalogoComponent } from "./catalogo.component";
 
@@ -18,14 +20,20 @@ export function CatalogoContainer() {
     setCart((previousCart) => [...previousCart, coffee]);
   }
 
+  if (loading) {
+    return <LoadingMessage>Cargando cafés…</LoadingMessage>;
+  }
+
+  if (error) {
+    return <ErrorMessage>{error}</ErrorMessage>;
+  }
+
   return (
     <CatalogoComponent
       cart={cart}
       cartTotal={cartTotal}
       coffees={coffees}
-      error={error}
       filteredCoffees={filteredCoffees}
-      loading={loading}
       onAddToCart={addToCart}
       onClearCart={() => setCart([])}
       onSearchChange={setSearch}

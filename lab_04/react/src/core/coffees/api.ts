@@ -1,4 +1,4 @@
-import type { Coffee } from "./core/coffees/model";
+import type { Coffee, CoffeeInput } from "./model";
 import { savedCoffeesSchema } from "./coffee.schema";
 
 const savedCoffeesKey = "coffee-catalog";
@@ -33,7 +33,14 @@ export async function getCoffees(signal: AbortSignal): Promise<Coffee[]> {
   }
 
   const initialCoffees: Coffee[] = await response.json();
-  return [...initialCoffees, ...readSavedCoffees()];
+  const savedCoffees = readSavedCoffees();
+  const savedById = new Map(savedCoffees.map((coffee) => [coffee.id, coffee]));
+  const initialIds = new Set(initialCoffees.map((coffee) => coffee.id));
+
+  return [
+    ...initialCoffees.map((coffee) => savedById.get(coffee.id) ?? coffee),
+    ...savedCoffees.filter((coffee) => !initialIds.has(coffee.id)),
+  ];
 }
 
 export async function getCoffee(
@@ -50,17 +57,29 @@ export async function getCoffee(
   return coffees.find((coffee) => coffee.id === numericId);
 }
 
-export async function saveCoffee(input: Omit<Coffee, "id">): Promise<Coffee> {
+export async function saveCoffee(
+  input: CoffeeInput,
+  id?: number,
+): Promise<Coffee> {
   const coffees = await getCoffees(new AbortController().signal);
+  const existingCoffee = id === undefined
+    ? undefined
+    : coffees.find((coffee) => coffee.id === id);
+
+  if (id !== undefined && existingCoffee === undefined) {
+    throw new Error("Café no encontrado.");
+  }
+
   const coffee: Coffee = {
     ...input,
-    id: Math.max(0, ...coffees.map((existingCoffee) => existingCoffee.id)) + 1,
+    id: id ?? Math.max(0, ...coffees.map((existing) => existing.id)) + 1,
   };
+  const savedCoffees = readSavedCoffees();
+  const updatedSavedCoffees = [
+    ...savedCoffees.filter((saved) => saved.id !== coffee.id),
+    coffee,
+  ];
 
-  localStorage.setItem(
-    savedCoffeesKey,
-    JSON.stringify([...readSavedCoffees(), coffee]),
-  );
-
+  localStorage.setItem(savedCoffeesKey, JSON.stringify(updatedSavedCoffees));
   return coffee;
 }

@@ -30,7 +30,7 @@ con `tsc --noEmit`. Vite genera el árbol de rutas que TypeScript necesita.
 - [x] O4 · Un custom hook y una ref
 - [x] O5 · Lista y detalle con TanStack Router
 - [x] O6 · Alta de cafés con TanStack Form y Zod
-- [ ] O7 · Edición y organización en pods
+- [x] O7 · Edición y organización en pods
 - [ ] O8 · README + bitácora de IA
 
 ## Ejercicios opcionales
@@ -50,6 +50,25 @@ con `tsc --noEmit`. Vite genera el árbol de rutas que TypeScript necesita.
 - [ ] D3 · Un contrato de API distinto
 - [ ] D4 · Tests de componentes
 - [ ] D5 · Hacia TanStack Start
+
+## Rutas y arquitectura
+
+- `/` redirige al catálogo.
+- `/coffees` muestra la lista, el buscador y el carrito.
+- `/coffees/new` permite añadir un café.
+- `/coffees/$coffeeId` muestra el detalle.
+- `/coffees/$coffeeId/edit` permite editarlo.
+
+El código está organizado por responsabilidad:
+
+- `routes/` lee parámetros y muestra la escena correspondiente.
+- `core/` concentra el router, el modelo, el esquema, las peticiones y los
+  hooks compartidos.
+- `layouts/` mantiene la navegación común alrededor de las rutas.
+- `scenes/` compone cada pantalla y decide a dónde navegar al terminar una acción.
+- `pods/catalogo/` contiene catálogo, carrito y detalle; `pods/edicion/` contiene el formulario y la lógica de alta/edición. Cada pod exporta su interfaz desde `index.ts` y no importa del otro.
+- `common/components/` contiene mensajes reutilizables de carga y error.
+- Los cafés guardados en `localStorage` se combinan con el JSON por `id`: una edición reemplaza el café inicial en vez de añadir una tarjeta duplicada.
 
 ### Pregunta de O1
 
@@ -95,6 +114,13 @@ El carrito está en el estado local del catálogo, que se desmonta al abrir el d
 
 **Respuesta:**
 TypeScript comprueba los tipos durante el desarrollo y se elimina al generar JavaScript; no valida los datos que introduce una persona al usar la aplicación. Zod comprueba esos valores en tiempo de ejecución y permite rechazar o transformar entradas inválidas. El precio debe ser un número para que las reglas numéricas (mayor que cero) funcionen y para poder calcularlo sin convertirlo después; por eso el campo usa `valueAsNumber`.
+
+### Preguntas de O7
+
+¿Dónde cambiarías la presentación de una tarjeta, la regla de validación del precio y la pantalla a la que se navega después de guardar? ¿Qué aporta separar container y component, y cuándo no hace falta?
+
+**Respuesta:**
+Cambiaría el aspecto de la tarjeta en `pods/catalogo/coffee-card.tsx`, la regla del precio en `core/coffees/coffee.schema.ts` y el destino tras guardar en la escena correspondiente de `scenes/`. Separar container y component mantiene la carga y las decisiones fuera de la presentación, haciendo más fácil reutilizar y comprobar cada parte. Lo reservaría para pantallas o módulos con lógica/datos y presentación que se beneficien de evolucionar por separado; para elementos pequeños y puramente visuales añadiría una capa innecesaria.
 
 ## Reglas del proyecto
 

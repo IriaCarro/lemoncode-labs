@@ -10,3 +10,8 @@ export interface Coffee {
 }
 
 export type CoffeeInput = Omit<Coffee, "id">;
+
+/** Los campos que el formulario edita: un café sin su id, que no se toca. */
+export function toCoffeeInput({ id, ...input }: Coffee): CoffeeInput {
+  return input;
+}

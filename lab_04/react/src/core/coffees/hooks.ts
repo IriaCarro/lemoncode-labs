@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getCoffee, getCoffees } from "../../api";
+import { getCoffee, getCoffees } from "./api";
 import type { Coffee } from "./model";
 
 interface CoffeesState {
@@ -47,12 +47,26 @@ interface CoffeeState {
   error: string | null;
 }
 
-export function useCoffee(id: string): CoffeeState {
+/**
+ * El café de `id`. **Sin `id` no pide nada**: es lo que necesita el alta, que
+ * comparte contenedor con la edición y no tiene ningún café que cargar.
+ */
+export function useCoffee(id?: string): CoffeeState {
   const [coffee, setCoffee] = useState<Coffee>();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(id !== undefined);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (id === undefined) {
+      setCoffee(undefined);
+      setError(null);
+      setLoading(false);
+      return;
+    }
+
+    // En una constante porque `id` es un parámetro: TypeScript no conserva el
+    // descarte del `undefined` dentro de la función de dentro.
+    const coffeeId = id;
     const controller = new AbortController();
 
     async function loadCoffee() {
@@ -61,7 +75,7 @@ export function useCoffee(id: string): CoffeeState {
       setCoffee(undefined);
 
       try {
-        setCoffee(await getCoffee(id, controller.signal));
+        setCoffee(await getCoffee(coffeeId, controller.signal));
       } catch (cause) {
         if (!controller.signal.aborted) {
           setError(
