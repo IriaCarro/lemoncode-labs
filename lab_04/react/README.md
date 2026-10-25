@@ -29,7 +29,7 @@ Vite.
 - [x] O1 · El catálogo con componentes
 - [x] O2 · Un carrito con estado y eventos
 - [x] O3 · Cargar los cafés con `useEffect`
-- [ ] O4 · Un custom hook y una ref
+- [x] O4 · Un custom hook y una ref
 - [ ] O5 · Lista y detalle con TanStack Router
 - [ ] O6 · Alta de cafés con TanStack Form y Zod
 - [ ] O7 · Edición y organización en pods
@@ -53,6 +53,16 @@ Vite.
 - [ ] D4 · Tests de componentes
 - [ ] D5 · Hacia TanStack Start
 
+## Arquitectura
+
+- `core/coffees` contiene el modelo y la carga de cafés reutilizable.
+- `useCoffees()` vive en `core/coffees/hooks.ts`: cada llamada tiene sus propios
+  estados y realiza su propia petición.
+- `pods/catalogo` contiene el container, que gestiona la carga, el buscador y
+  el carrito, y el component, que presenta el catálogo y recibe sus datos y
+  acciones por props.
+- `app.tsx` compone la pantalla del catálogo.
+
 ### Pregunta de O1
 
 ¿Qué aviso da React sin `key` y para qué la necesita? ¿Por qué usáis `coffee.id` y no el índice del `.map`?
@@ -75,6 +85,13 @@ que no hace falta duplicarlo en estado: mantener ambos podría dejarlos desincro
 
 **Respuesta:**
 La petición es un efecto secundario: ponerla dentro de `useEffect` evita iniciarla durante el render, que React puede repetir. El array vacío indica que el efecto no depende de valores reactivos y se ejecuta al montar el componente; al desmontarlo se limpia la petición pendiente. En desarrollo, `StrictMode` puede ejecutar el ciclo del efecto más de una vez para detectar problemas.
+
+### Preguntas de O4
+
+Si dos componentes distintos llaman a `useCoffees()`, ¿comparten datos? ¿Cuántas peticiones se hacen? ¿Por qué el foco se hace con una ref y no con un estado?
+
+**Respuesta:**
+Cada llamada a `useCoffees()` tiene su propio estado, así que los componentes no comparten los datos y cada uno inicia su propia petición al montarse. La ref permite enfocar directamente el input del DOM cuando se pulsa «Buscar» sin provocar un render; el foco es una acción imperativa, no un dato que deba controlar la interfaz.
 
 ## Reglas del proyecto
 
