@@ -27,7 +27,7 @@ Vite.
 ## Ejercicios obligatorios
 
 - [x] O1 · El catálogo con componentes
-- [ ] O2 · Un carrito con estado y eventos
+- [x] O2 · Un carrito con estado y eventos
 - [ ] O3 · Cargar los cafés con `useEffect`
 - [ ] O4 · Un custom hook y una ref
 - [ ] O5 · Lista y detalle con TanStack Router
@@ -39,11 +39,17 @@ Vite.
 
 ¿Qué aviso da React sin `key` y para qué la necesita? ¿Por qué usáis `coffee.id` y no el índice del `.map`?
 
-**Respuesta:** React avisa de que cada elemento de una lista necesita una `key`
-única. La usa para identificar los elementos entre renderizados y detectar si
-se han añadido, quitado o reordenado. `coffee.id` es único y estable; el índice
-puede cambiar al filtrar o reordenar la lista y hacer que React asocie una
-tarjeta con el café equivocado.
+**Respuesta:**
+React avisa de que cada elemento de una lista necesita una `key` única. La usa para identificar los elementos entre renderizados y detectar si se han añadido, quitado o reordenado. `coffee.id` es único y estable; el índice puede cambiar al filtrar o reordenar la lista y hacer que React asocie una tarjeta con el café equivocado.
+
+### Preguntas de O2
+
+¿Por qué se escribe `onAdd={addToCart}` y no `onAdd={addToCart()}`? ¿Por qué el total del carrito no necesita su propio `useState`?
+
+**Respuesta:**
+`onAdd={addToCart}` pasa la función para que la tarjeta la llame cuando se pulsa el botón.
+`onAdd={addToCart()}` la ejecutaría durante el render, sin esperar al clic. El total se calcula con `reduce` a partir de `cart`, así
+que no hace falta duplicarlo en estado: mantener ambos podría dejarlos desincronizados.
 
 ## Reglas del proyecto
 
