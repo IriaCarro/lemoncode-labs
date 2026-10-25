@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "@tanstack/react-router";
 import { CoffeeCard } from "./coffee-card";
 import type { Coffee } from "../../core/coffees/model";
 
@@ -33,6 +34,12 @@ export function CatalogoComponent({
     <main>
       <div className="flex items-center gap-3">
         <h1>Catálogo de café</h1>
+        <Link
+          className="rounded border border-indigo-700 px-4 py-2 font-medium text-indigo-700 no-underline hover:bg-indigo-50"
+          to="/coffees/new"
+        >
+          Añadir café
+        </Link>
         <button
           disabled={loading || error !== null}
           onClick={() => searchInputRef.current?.focus()}

@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CoffeesRouteImport } from './routes/coffees'
 import { Route as CoffeesIndexRouteImport } from './routes/coffees/index'
 import { Route as CoffeesCoffeeIdRouteImport } from './routes/coffees/$coffeeId'
+import { Route as CoffeesNewRouteImport } from './routes/coffees/new'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,16 +35,23 @@ const CoffeesCoffeeIdRoute = CoffeesCoffeeIdRouteImport.update({
   path: '/$coffeeId',
   getParentRoute: () => CoffeesRoute,
 } as any)
+const CoffeesNewRoute = CoffeesNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => CoffeesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/coffees': typeof CoffeesRouteWithChildren
   '/coffees/$coffeeId': typeof CoffeesCoffeeIdRoute
+  '/coffees/new': typeof CoffeesNewRoute
   '/coffees/': typeof CoffeesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/coffees/$coffeeId': typeof CoffeesCoffeeIdRoute
+  '/coffees/new': typeof CoffeesNewRoute
   '/coffees': typeof CoffeesIndexRoute
 }
 export interface FileRoutesById {
@@ -51,14 +59,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/coffees': typeof CoffeesRouteWithChildren
   '/coffees/$coffeeId': typeof CoffeesCoffeeIdRoute
+  '/coffees/new': typeof CoffeesNewRoute
   '/coffees/': typeof CoffeesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/coffees' | '/coffees/$coffeeId' | '/coffees/'
+  fullPaths:
+    '/' | '/coffees' | '/coffees/$coffeeId' | '/coffees/new' | '/coffees/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/coffees/$coffeeId' | '/coffees'
-  id: '__root__' | '/' | '/coffees' | '/coffees/$coffeeId' | '/coffees/'
+  to: '/' | '/coffees/$coffeeId' | '/coffees/new' | '/coffees'
+  id:
+    | '__root__'
+    | '/'
+    | '/coffees'
+    | '/coffees/$coffeeId'
+    | '/coffees/new'
+    | '/coffees/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -96,16 +112,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CoffeesCoffeeIdRouteImport
       parentRoute: typeof CoffeesRoute
     }
+    '/coffees/new': {
+      id: '/coffees/new'
+      path: '/new'
+      fullPath: '/coffees/new'
+      preLoaderRoute: typeof CoffeesNewRouteImport
+      parentRoute: typeof CoffeesRoute
+    }
   }
 }
 
 interface CoffeesRouteChildren {
   CoffeesCoffeeIdRoute: typeof CoffeesCoffeeIdRoute
+  CoffeesNewRoute: typeof CoffeesNewRoute
   CoffeesIndexRoute: typeof CoffeesIndexRoute
 }
 
 const CoffeesRouteChildren: CoffeesRouteChildren = {
   CoffeesCoffeeIdRoute: CoffeesCoffeeIdRoute,
+  CoffeesNewRoute: CoffeesNewRoute,
   CoffeesIndexRoute: CoffeesIndexRoute,
 }
 

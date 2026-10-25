@@ -19,8 +19,8 @@ Para generar la versión de producción y comprobar los tipos:
 npm run build
 ```
 
-El comando `build` ejecuta `tsc --noEmit` antes de generar la aplicación con
-Vite.
+El comando `build` genera la aplicación con Vite y después comprueba los tipos
+con `tsc --noEmit`. Vite genera el árbol de rutas que TypeScript necesita.
 
 ## Ejercicios obligatorios
 
@@ -29,7 +29,7 @@ Vite.
 - [x] O3 · Cargar los cafés con `useEffect`
 - [x] O4 · Un custom hook y una ref
 - [x] O5 · Lista y detalle con TanStack Router
-- [ ] O6 · Alta de cafés con TanStack Form y Zod
+- [x] O6 · Alta de cafés con TanStack Form y Zod
 - [ ] O7 · Edición y organización en pods
 - [ ] O8 · README + bitácora de IA
 
@@ -88,6 +88,13 @@ Cada llamada a `useCoffees()` tiene su propio estado, así que los componentes n
 **Respuesta:**
 Una URL por pantalla se puede compartir, guardar en favoritos y abrir directamente; además, el historial del navegador permite volver y avanzar entre pantallas.
 El carrito está en el estado local del catálogo, que se desmonta al abrir el detalle, así que ese estado desaparece; para conservarlo al navegar tendría que vivir en un ancestro que permanezca montado, como el layout o en el almacenamiento del navegador.
+
+### Preguntas de O6
+
+¿Qué diferencia hay entre los tipos de TypeScript y la validación de Zod? ¿Por qué el precio debe llegar como número?
+
+**Respuesta:**
+TypeScript comprueba los tipos durante el desarrollo y se elimina al generar JavaScript; no valida los datos que introduce una persona al usar la aplicación. Zod comprueba esos valores en tiempo de ejecución y permite rechazar o transformar entradas inválidas. El precio debe ser un número para que las reglas numéricas (mayor que cero) funcionen y para poder calcularlo sin convertirlo después; por eso el campo usa `valueAsNumber`.
 
 ## Reglas del proyecto
 
